@@ -53,13 +53,16 @@ def batch_resize(folder_name, height, width,overwrite):
     pass
 
 menu = """
-===================
+==================================
 1. rename folder's contents
 2. resize images 
 3. exit
-=================
+==================================
 """
 def show_choices_interface():
+    """
+    This function shows a menus users can interact with 
+    """
     print("welcome, what do you want to do?")
     while True:
         print(menu)
