@@ -1,3 +1,5 @@
 
 import tensorflow as tf
-print(tf.__version__)
+import image_prep
+
+image_prep.show_choices_interfaces() 
