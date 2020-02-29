@@ -40,8 +40,8 @@ def batch_resize(folder_name, height, width,overwrite):
         image = Image.open(image_name)
 
         if overwrite.lower() == 'y': # resized image will save over
-            image.resize(width,height)
-            image.save(image_name)
+            new_image = image.resize((width,height))
+            new_image.save(image_name)
 
         else: # a copy of the resized image will be saved
             new_image = image.resize((width,height))
@@ -56,10 +56,10 @@ menu = """
 ===================
 1. rename folder's contents
 2. resize images 
-2. exit
+3. exit
 =================
 """
-def show_choices_interfaces():
+def show_choices_interface():
     print("welcome, what do you want to do?")
     while True:
         print(menu)
@@ -74,10 +74,10 @@ def show_choices_interfaces():
             folder_path = input("Please enter the folder path")
             height = int(input("Please enter the new height"))
             width = int(input("Please enter the new width"))
-            batch_resize(folder_path,height,width,'n')
-
+            batch_resize(folder_path,height,width,'y')
+          
         if user_choice =='3':
-            sys.exit()
+            return
 
 
 
