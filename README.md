@@ -11,6 +11,7 @@ To use and get working follow these steps:
   6. update pip to a version greater than 20.0 
   7. add tensorflow version 2.0.0
   8. add Scipy 
-  9. Hopefully everything is works 
+  9. add Pillow
+  10. Hopefully everything is works 
   
   
