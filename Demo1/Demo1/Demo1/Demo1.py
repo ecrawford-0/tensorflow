@@ -1,12 +1,17 @@
 # Importing all necessary libraries 
 import tensorflow as tf
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.image as mping
+import random
+import testing
+
+from tensorflow.keras.preprocessing import image
 from tensorflow.keras.preprocessing.image import ImageDataGenerator 
 from tensorflow.keras.models import Sequential 
 from tensorflow.keras.layers import Conv2D, MaxPooling2D 
 from tensorflow.keras.layers import Activation, Dropout, Flatten, Dense 
 from tensorflow.keras import backend as K 
-
-
 
 def train_model():
     train_data_dir = 'data/train'
@@ -17,7 +22,7 @@ def train_model():
     batch_size = 16
     img_width = 200
     img_height = 200
-
+    labels = [0,1]
 
     if K.image_data_format() == 'channels_first': 
         input_shape = (3, img_width, img_height) 
@@ -75,9 +80,10 @@ def train_model():
         epochs=epochs, 
         validation_data=validation_generator, 
         validation_steps=nb_validation_samples // batch_size) 
-
-    model.save('full_model_saved.h5') 
-
+    
+    
+    model.save('full_model_saved1.h5')
+    
 
 def load_model(old_model):
     
@@ -86,21 +92,34 @@ def load_model(old_model):
 
     # Show the model architecture
     new_model.summary()
-"""    
-    user_choice = input("test with image?(y/n)")
-    if user_choice.lower() =='y':
-        image = input("Enter image path")
-        new_model.predict(image)
-"""
 
-   # loss, acc = new_model.evaluate(test_images,  test_labels, verbose=2)
-   # print('Restored model, accuracy: {:5.2f}%'.format(100*acc))
+    user_choice = input("test with image?(y/n)")
+
+   
+    if user_choice.lower() =='y':
+
+        img_path = "data/train/Buff Orpington/buff_orpington_013.jpg"
+        #img_path = input("Enter image path")
+        # predicting images
+        img = image.load_img(img_path, target_size=(200,200))
+        x = image.img_to_array(img)
+        x = np.expand_dims(x, axis=0)
+
+        images = np.vstack([x])
+        classes = new_model.predict_classes(images, batch_size=10)
+        print (classes)
+
+        
+
 
 menu = """
+===============================
 1. train model
-2. load model
-3. exit
-
+2. load a model
+3. run tensorflow tutorial
+4. make prediction
+5. exit
+===============================
 """
 
 while True:
@@ -112,6 +131,12 @@ while True:
     if user_input == '2':
         file = ('full_model_saved.h5')
         #file = input("enter the filename")
-        load_model(file)
-    if user_input =='3':
+        #load_model(file)
+    if user_input == '3':
+        debug.run_class()
+
+    if user_input == '4':
+       testing.make_prediction()
+
+    if user_input =='5':
         break
