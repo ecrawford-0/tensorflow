@@ -4,7 +4,7 @@
 
 To use and get working follow these steps:
   1. Download this repository 
-  2. Download Visual Studio 2019 
+  2. Download Visual Studio 2019 [here](https://visualstudio.microsoft.com/downloads/)
   3. Download python version 3.6.8 [here](https://www.python.org/downloads/release/python-368/) add it the Path
   4. Open Visual Studio and open the project
   5. Make sure to set the python environment to be to the 3.6.8
@@ -15,3 +15,4 @@ To use and get working follow these steps:
   10. Hopefully everything is works 
   
   
+
